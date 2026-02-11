@@ -1,0 +1,126 @@
+{
+	"manifest_version":"1.0.0",
+	"type":"container",
+	"title":"STARR Analysis",
+	"description":"",
+	"content":[
+	{
+		"type":"container",
+		"title":"Data pre-processing", 
+		"contentid":"datapreprocessing",
+		"description":"Pre-process STARR data from raw fastq files",
+		"content":[{
+			"type":"pipeline",
+			"title":"Data Trimming",
+			"description": "Data Trimming",
+			"contentid":"datatrimming",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_data_trimming_20240701"
+		},{
+			"type":"pipeline",
+			"title":"Process fastq to delimited",
+			"description": "Process fastq to delimited",
+			"contentid":"processfastqtodelimited",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_process_fastq_to_delimited_20240701"
+		},{
+			"type":"pipeline",
+			"title":"Process delimited",
+			"description": "Process delimited",
+			"contentid":"processdelimited",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_process_delimited_sequences_20240701"
+		},{
+			"type":"pipeline",
+			"title":"Process multi delimited",
+			"description": "Process multi delimited",
+			"contentid":"processmultidelimited",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_process_multi_delimited_sequences_20240701"
+		},{
+			"type":"pipeline",
+			"title":"Cluster delimited sequences",
+			"description": "Cluster delimited sequences",
+			"contentid":"clusterdelimited",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_cluster_delimited_sequences_20241024"
+		}
+		]
+	},
+	{
+		"type":"container",
+		"title":"ID Map", 
+		"contentid":"idmap",
+		"description":"ID Maps",
+		"content":[{
+			"type":"pipeline",
+			"title":"ID Map generation",
+			"description": "ID Map generation",
+			"contentid":"idmapgeneration",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_generate_IDMap_20240701"
+		},{
+			"type":"pipeline",
+			"title":"ID Map joining",
+			"description": "ID Map joining",
+			"contentid":"idmapjoining",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_join_IDMap_20241024"
+		}
+		
+		]
+	},{
+		"type":"container",
+		"title":"Activity Call", 
+		"contentid":"activitycall",
+		"description":"Call activity of STARR-seq elements",
+		"content":[{
+			"type":"pipeline",
+			"title":"Limma-based call",
+			"description": "Limma-based call",
+			"contentid":"limmacall",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_STARR_element_call_20240701"
+		}
+		]
+	},	
+	{
+		"type":"container",
+		"title":"Statistics and QC", 
+		"contentid":"statistics",
+		"description":"Statistics and QC generation",
+		"content":[{
+			"type":"pipeline",
+			"title":"Library layout plot",
+			"description": "Plot library layout",
+			"contentid":"plotlayout",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_plot_STARR_library_layouts_20241022"
+		},{
+			"type":"pipeline",
+			"title":"STARR-seq QC",
+			"description": "Generate STARR-seq QCs",
+			"contentid":"starrqc",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_generate_QC_20240701"
+		},{
+			"type":"pipeline",
+			"title":"Generate shared Ranked logFCs",
+			"description": "Generate shared Ranked logFCs",
+			"contentid":"sharedrankedlogfcs",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_generate_shared_ranked_logFCs_20240701"
+		},{
+			"type":"pipeline",
+			"title":"IDMap QC",
+			"description": "Generate IDMap QC",
+			"contentid":"idmapqc",
+			"source":"scripts/starranalysis.py",
+			"name":"RMSTemplate_generate_IDMap_QC_20240701"
+		}
+		
+		]
+	}	
+	
+	]
+}

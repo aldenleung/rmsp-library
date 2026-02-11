@@ -1,0 +1,137 @@
+{
+	"manifest_version":"1.0.0",
+	"type":"container",
+	"title":"PROcap Analysis",
+	"description":"",
+	"content":[
+	{
+		"type":"container",
+		"title":"Reference preparation", 
+		"contentid":"refprep",
+		"description":"",
+		"content":[{
+			"type":"pipeline",
+			"title":"Reference download",
+			"description":"Download a reference genome you would like to have. A set of pre-compiled genomes is available at http://abc.def.ghi",
+			"contentid":"refdownload",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_reference_download_20240501"
+		},
+		{
+			"type":"pipeline",
+			"title":"Genome indexing (STAR)",
+			"contentid":"genomeindexing",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_genome_indexing_20240501"
+		},
+		{
+			"type":"pipeline",
+			"title":"Generate QC Gene body ratio annotation",
+			"contentid":"qcgbanno",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_generate_QC_gbratio_annotation_20240901"
+		}		
+		]
+	}, 	
+	{
+		"type":"container",
+		"title":"Data pre-processing", 
+		"contentid":"datapreprocessing",
+		"description":"Pre-process PRO-cap data from raw fastq files to bigwig files",
+		"content":[{
+			"type":"pipeline",
+			"title":"Data Preprocessing with UMIs",
+			"description": "Make use of UMIs to remove potential PCR duplicates in this step",
+			"contentid":"withumi",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_preprocessing_with_UMI_20240501"
+		},{
+			"type":"pipeline",
+			"title":"Data Preprocessing without UMIs",
+			"description": "No PCR duplicates are removed in this step",
+			"contentid":"withoutumi",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_preprocessing_without_UMI_20240501"
+		}
+		]
+	}, 	
+	{
+		"type":"container",
+		"title":"Alignments merging", 
+		"contentid":"alignmentmerging",
+		"description":"Merge PRO-cap alignments",
+		"content":[{
+			"type":"pipeline",
+			"title":"Merging resequenced data",
+			"description":"",
+			"contentid":"mergereseq",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_merge_reseqs_20240501"
+		},{
+			"type":"pipeline",
+			"title":"Merging replicates",
+			"description":"",
+			"contentid":"mergereplicate",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_merge_replicates_20240501"
+		}]
+	},
+	{
+		"type":"container",
+		"title":"PROcap Peak Calling", 
+		"contentid":"peakcalling",
+		"description":"Perform peak calling using specific tools",
+		"content":[{
+			"type":"pipeline",
+			"contentid":"pints",
+			"title":"Peak Calling using PINTS",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_peak_calling_pints_20240501"
+		}
+		]
+	},
+	{
+		"type":"container",
+		"title":"PROcap Peak Merging", 
+		"contentid":"peakmerging",
+		"description":"Merge PRO-cap peaks",
+		"content":[{
+			"type":"pipeline",
+			"contentid":"pints",
+			"title":"Peak Merging (PINTS-based peaks)",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_merge_PINTS_peaks_20240501"
+		}
+		]
+	},
+	{
+		"type":"container",
+		"title":"Statistics", 
+		"contentid":"statistics",
+		"description":"Generate summary statistics for PRO-cap samples",
+		"content":[{
+			"type":"pipeline",
+			"contentid":"replicatecorrelation",
+			"title":"Generate PRO-cap replicates correlation",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_generate_replicates_correlation_20240501"
+		},
+		{
+			"type":"pipeline",
+			"contentid":"gbratio",
+			"title":"Generate PRO-cap gene body ratio",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_generate_PROcap_gbratio_20240501"
+		},
+		{
+			"type":"pipeline",
+			"contentid":"rnalen",
+			"title":"Generate PRO-cap RNA length statistics",
+			"source":"scripts/procapanalysis.py",
+			"name":"RMSTemplate_generate_PROcap_RNA_length_20240501"
+		}
+		
+		]
+	}	
+	]
+}

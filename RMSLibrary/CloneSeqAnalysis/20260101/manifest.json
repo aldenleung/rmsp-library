@@ -1,0 +1,47 @@
+{
+	"manifest_version":"1.0.0",
+	"type":"container",
+	"title":"Clone-seq Analysis",
+	"description":"Clone-seq data analysis",
+	"content":[
+	{
+		"type":"container",
+		"title":"Reference preparation", 
+		"contentid":"refprep",
+		"description":"",
+		"content":[{
+			"type":"pipeline",
+			"title":"Reference indexing",
+			"description":"Index the reference sequence",
+			"contentid":"refindexing",
+			"source":"scripts/cloneseqanalysis.py",
+			"name":"RMSTemplate_reference_indexing_20260101"
+		}
+		]
+	},
+	{
+		"type":"container",
+		"title":"Data analysis", 
+		"contentid":"dataanalysis",
+		"description":"Analysis of Clone-seq data",
+		"content":[{
+			"type":"pipeline",
+			"title":"Data pre-processing",
+			"description": "Pre-process Clone-seq data from raw fastq files",
+			"contentid":"datapreprocessing",
+			"source":"scripts/cloneseqanalysis.py",
+			"name":"RMSTemplate_data_preprocessing_20260101"
+		},
+		{
+			"type":"pipeline",
+			"title":"Pool selection",
+			"description": "Generate a list of pool selections for processed Clone-seq data",
+			"contentid":"poolselection",
+			"source":"scripts/cloneseqanalysis.py",
+			"name":"RMSTemplate_pool_selection_20260101"
+		}
+		]
+	}
+
+	]
+}
