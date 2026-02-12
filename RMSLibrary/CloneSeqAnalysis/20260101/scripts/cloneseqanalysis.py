@@ -128,7 +128,7 @@ def RMSTemplate_data_preprocessing_20260101(
 			thread=1, 
 		)
 		# Alignment and pileup
-		f = lambda **kwargs: [kwargs["o"], kwargs["o"] + ".bai"]
+		f = lambda **kwargs: [kwargs["o"]]
 		output_func = rms.register_pipe(f)
 		run_template_bash(
 			"bwa mem -t {thread} {r} {i1} {i2} | samtools sort -@ {thread} -o {o} -",
@@ -192,7 +192,7 @@ def RMSTemplate_data_preprocessing_20260101(
 			thread=1, 
 		)
 
-		f = lambda **kwargs: [kwargs["o"], kwargs["o"] + ".bai"]
+		f = lambda **kwargs: [kwargs["o"]]
 		output_func = rms.register_pipe(f)
 		run_template_bash(
 			"bwa mem -t {thread} {r} {i} | samtools sort -@ {thread} -o {o} -",
